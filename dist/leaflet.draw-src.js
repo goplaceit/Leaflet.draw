@@ -104,6 +104,7 @@ L.drawLocal = {
 L.Draw = {};
 
 L.Draw.escapeKeyCancel = true;
+L.Draw.iconSize = new L.Point(8, 8)
 
 L.Draw.Feature = L.Handler.extend({
 	includes: L.Mixin.Events,
@@ -198,10 +199,6 @@ L.Draw.Polyline = L.Draw.Feature.extend({
 			color: '#b00b00',
 			timeout: 2500
 		},
-		icon: new L.DivIcon({
-			iconSize: new L.Point(8, 8),
-			className: 'leaflet-div-icon leaflet-editing-icon'
-		}),
 		guidelineDistance: 20,
 		shapeOptions: {
 			stroke: true,
@@ -217,6 +214,11 @@ L.Draw.Polyline = L.Draw.Feature.extend({
 	},
 
 	initialize: function (map, options) {
+		this.options.icon = new L.DivIcon({
+			iconSize: L.Draw.iconSize,
+			className: 'leaflet-div-icon leaflet-editing-icon'
+		});
+
 		// Need to set this here to ensure the correct message is used.
 		this.options.drawError.message = L.drawLocal.draw.handlers.polyline.error;
 
@@ -974,13 +976,14 @@ L.Edit = L.Edit || {};
 
 L.Edit.Poly = L.Handler.extend({
 	options: {
-		icon: new L.DivIcon({
-			iconSize: new L.Point(8, 8),
-			className: 'leaflet-div-icon leaflet-editing-icon'
-		})
 	},
 
 	initialize: function (poly, options) {
+		this.options.icon = new L.DivIcon({
+			iconSize: L.Draw.iconSize,
+			className: 'leaflet-div-icon leaflet-editing-icon'
+		});
+
 		this._poly = poly;
 		L.setOptions(this, options);
 	},
@@ -1242,17 +1245,19 @@ L.Edit = L.Edit || {};
 
 L.Edit.SimpleShape = L.Handler.extend({
 	options: {
-		moveIcon: new L.DivIcon({
-			iconSize: new L.Point(8, 8),
-			className: 'leaflet-div-icon leaflet-editing-icon leaflet-edit-move'
-		}),
-		resizeIcon: new L.DivIcon({
-			iconSize: new L.Point(8, 8),
-			className: 'leaflet-div-icon leaflet-editing-icon leaflet-edit-resize'
-		})
 	},
 
 	initialize: function (shape, options) {
+		this.options.moveIcon = new L.DivIcon({
+			iconSize: L.Draw.iconSize,
+			className: 'leaflet-div-icon leaflet-editing-icon leaflet-edit-move'
+		});
+
+		this.options.resizeIcon = new L.DivIcon({
+			iconSize: L.Draw.iconSize,
+			className: 'leaflet-div-icon leaflet-editing-icon leaflet-edit-resize'
+		});
+
 		this._shape = shape;
 		L.Util.setOptions(this, options);
 	},
