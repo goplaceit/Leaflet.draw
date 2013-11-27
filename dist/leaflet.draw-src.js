@@ -103,6 +103,8 @@ L.drawLocal = {
 
 L.Draw = {};
 
+L.Draw.escapeKeyCancel = true;
+
 L.Draw.Feature = L.Handler.extend({
 	includes: L.Mixin.Events,
 
@@ -149,7 +151,9 @@ L.Draw.Feature = L.Handler.extend({
 
 			this._tooltip = new L.Tooltip(this._map);
 
-			L.DomEvent.addListener(this._container, 'keyup', this._cancelDrawing, this);
+			if (L.Draw.escapeKeyCancel) {
+				L.DomEvent.addListener(this._container, 'keyup', this._cancelDrawing, this);
+			}
 		}
 	},
 
