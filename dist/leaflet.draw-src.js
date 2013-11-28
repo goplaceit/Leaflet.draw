@@ -2678,6 +2678,7 @@ L.EditToolbar.Delete = L.Handler.extend({
 	},
 
 	confirmDeletion: true,
+	autoDelete: false,
 
 	includes: L.Mixin.Events,
 
@@ -2710,6 +2711,13 @@ L.EditToolbar.Delete = L.Handler.extend({
 
 		this.fire('enabled', { handler: this.type});
 		this._map.fire('draw:editstart', { handler: this.type });
+
+		if (this.autoDelete) {
+			layers = this._deletableLayers.getLayers()
+			for (var i = 0; i < layers.length; i++) {
+				layers[i].fire("click");
+			}
+		}
 	},
 
 	disable: function () {
