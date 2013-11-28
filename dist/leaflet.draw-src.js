@@ -214,6 +214,8 @@ L.Draw.Polyline = L.Draw.Feature.extend({
 	},
 
 	initialize: function (map, options) {
+		this.options.guidelineDistance = L.Draw.Polyline.prototype.options.guidelineDistance;
+
 		this.options.icon = new L.DivIcon({
 			iconSize: L.Draw.iconSize,
 			className: 'leaflet-div-icon leaflet-editing-icon'
