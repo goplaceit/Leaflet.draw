@@ -2620,6 +2620,7 @@ L.EditToolbar.Edit = L.Handler.extend({
 					styles.fill = false;
 				}
 
+				styles.dashArray = "10, 10"
 				layer.setStyle(styles);
 			}
 		}
