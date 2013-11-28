@@ -31,7 +31,8 @@ L.drawLocal = {
 		handlers: {
 			circle: {
 				tooltip: {
-					start: 'Click and drag to draw circle.'
+					start: 'Click and drag to draw circle.',
+					radius: 'Radius: '
 				}
 			},
 			marker: {
@@ -859,7 +860,7 @@ L.Draw.Circle = L.Draw.SimpleShape.extend({
 
 			this._tooltip.updateContent({
 				text: this._endLabelText,
-				subtext: showRadius ? 'Radius: ' + L.GeometryUtil.readableDistance(radius, useMetric) : ''
+				subtext: showRadius ? L.drawLocal.draw.handlers.circle.tooltip.radius + L.GeometryUtil.readableDistance(radius, useMetric) : ''
 			});
 		}
 	}
