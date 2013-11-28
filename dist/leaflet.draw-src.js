@@ -2677,6 +2677,8 @@ L.EditToolbar.Delete = L.Handler.extend({
 		TYPE: 'remove' // not delete as delete is reserved in js
 	},
 
+	confirmDeletion: true,
+
 	includes: L.Mixin.Events,
 
 	initialize: function (map, options) {
@@ -2783,6 +2785,11 @@ L.EditToolbar.Delete = L.Handler.extend({
 		this._deletableLayers.removeLayer(layer);
 
 		this._deletedLayers.addLayer(layer);
+
+		if (!this.confirmDeletion) {
+			this.save();
+			this.disable();
+		}
 	},
 
 	_onMouseMove: function (e) {
