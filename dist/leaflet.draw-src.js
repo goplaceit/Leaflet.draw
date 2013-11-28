@@ -2485,10 +2485,15 @@ L.EditToolbar.Edit = L.Handler.extend({
 			this._featureGroup.eachLayer(this._enableLayerEdit, this);
 
 			this._tooltip = new L.Tooltip(this._map);
-			this._tooltip.updateContent({
-				text: L.drawLocal.edit.handlers.edit.tooltip.text,
-				subtext: L.drawLocal.edit.handlers.edit.tooltip.subtext
-			});
+
+			if (L.drawLocal.edit.handlers.edit.tooltip) {
+				this._tooltip.updateContent({
+					text: L.drawLocal.edit.handlers.edit.tooltip.text,
+					subtext: L.drawLocal.edit.handlers.edit.tooltip.subtext
+				});
+			} else {
+				this._tooltip.dispose();
+			}
 
 			this._map.on('mousemove', this._onMouseMove, this);
 		}
