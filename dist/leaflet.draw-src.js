@@ -2613,12 +2613,14 @@ L.EditToolbar.Edit = L.Handler.extend({
 			} else {
 				layer.options.previousOptions = layer.options;
 
+				styles = $.extend({}, pathOptions, layer.options)
+
 				// Make sure that Polylines are not filled
 				if (!(layer instanceof L.Circle) && !(layer instanceof L.Polygon) && !(layer instanceof L.Rectangle)) {
-					pathOptions.fill = false;
+					styles.fill = false;
 				}
 
-				layer.setStyle(pathOptions);
+				layer.setStyle(styles);
 			}
 		}
 
