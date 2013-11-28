@@ -1944,6 +1944,11 @@ L.Toolbar = L.Class.extend({
 
 		this._modes[type].handler = handler;
 
+		$(document).on("click", "." + classNamePredix + '-' + type, function(event) {
+			event.preventDefault();
+			handler.enable.apply(handler);
+		});
+
 		this._modes[type].button = this._createButton({
 			title: buttonTitle,
 			className: classNamePredix + '-' + type,
